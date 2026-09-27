@@ -2,161 +2,875 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>فروشگاه خانواده افغان</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>فروشگاه افغان فمیلی</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f5f6f8;color:#222}
-header{background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;box-shadow:0 1px 5px #ddd}
-.logo{font-size:19px;font-weight:bold}
-.cart{font-size:25px;cursor:pointer}
-.badge{font-size:12px;background:#087f4f;color:#fff;border-radius:20px;padding:2px 6px;vertical-align:top}
-.hero{margin:18px;padding:25px 20px;border-radius:20px;background:#087f4f;color:#fff}
-.hero h1{font-size:27px;margin:0 0 12px}
-.hero p{line-height:1.7;margin:0 0 16px}
-.btn{display:inline-block;background:#fff;color:#087f4f;padding:12px 18px;border-radius:10px;font-weight:bold;text-decoration:none}
-.search{margin:18px}
-.search input{width:100%;padding:15px;border:1px solid #ddd;border-radius:12px;font-size:15px}
-.section{padding:5px 18px 20px}
-.title{font-size:20px;margin-bottom:15px}
-.categories{display:flex;gap:10px;overflow:auto}
-.category{min-width:90px;background:#fff;padding:13px 8px;border-radius:14px;text-align:center}
-.icon{font-size:30px}
-.city{margin:0 18px 20px;background:#fff;padding:18px;border-radius:14px}
-.city select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px;background:#fff}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.product{background:#fff;border-radius:15px;overflow:hidden}
-.pic{height:120px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:50px}
-.info{padding:12px}
-.price{color:#087f4f;font-weight:bold;margin-top:6px}
-.add{width:100%;margin-top:10px;padding:10px;border:0;border-radius:8px;background:#087f4f;color:white;font-size:14px;cursor:pointer}
-.cartbox{display:none;margin:0 18px 20px;background:#fff;border-radius:14px;padding:16px}
-.cartbox.show{display:block}
-.cartrow{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:9px 0}
-.order{width:100%;margin-top:12px;padding:12px;border:0;border-radius:9px;background:#222;color:#fff;font-weight:bold}
-footer{text-align:center;background:#222;color:white;padding:25px;margin-top:10px}
-small{color:#777}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f5f6f8;
+  color:#222;
+}
+
+header{
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 2px 10px #ddd;
+  padding:14px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:900px;
+  margin:auto;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+  color:#087f4f;
+}
+
+.cart-button{
+  border:0;
+  background:#087f4f;
+  color:white;
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.badge{
+  background:#fff;
+  color:#087f4f;
+  padding:2px 7px;
+  border-radius:20px;
+  margin-right:4px;
+  font-weight:bold;
+}
+
+.hero{
+  max-width:900px;
+  margin:18px auto;
+  padding:28px 20px;
+  border-radius:20px;
+  background:#087f4f;
+  color:white;
+}
+
+.hero h1{
+  margin:0 0 12px;
+  font-size:28px;
+}
+
+.hero p{
+  line-height:1.8;
+  margin:0 0 18px;
+}
+
+.hero-button{
+  display:inline-block;
+  background:white;
+  color:#087f4f;
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.search{
+  max-width:900px;
+  margin:18px auto;
+  padding:0 4px;
+}
+
+.search input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+}
+
+.section{
+  max-width:900px;
+  margin:auto;
+  padding:10px 14px 25px;
+}
+
+.title{
+  font-size:21px;
+  margin:10px 0 15px;
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.category{
+  min-width:95px;
+  border:0;
+  background:white;
+  padding:14px 9px;
+  border-radius:14px;
+  text-align:center;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.category.active{
+  background:#087f4f;
+  color:white;
+}
+
+.icon{
+  display:block;
+  font-size:27px;
+  margin-bottom:7px;
+}
+
+.city-box{
+  background:white;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:20px;
+}
+
+.city-box select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-top:8px;
+  font-size:15px;
+  background:white;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.product{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.product-image{
+  height:130px;
+  background:#eef2f0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:55px;
+}
+
+.info{
+  padding:12px;
+}
+
+.product h3{
+  margin:0;
+  font-size:16px;
+}
+
+.description{
+  color:#777;
+  font-size:12px;
+  margin-top:7px;
+  line-height:1.6;
+}
+
+.price{
+  color:#087f4f;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+.add{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border:0;
+  border-radius:9px;
+  background:#087f4f;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.cart-box{
+  display:none;
+  max-width:900px;
+  margin:10px auto 30px;
+  background:white;
+  border-radius:16px;
+  padding:18px;
+}
+
+.cart-box.show{
+  display:block;
+}
+
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+  gap:10px;
+}
+
+.qty button{
+  border:0;
+  background:#087f4f;
+  color:white;
+  width:30px;
+  height:30px;
+  border-radius:8px;
+}
+
+.remove{
+  border:0;
+  background:#eee;
+  border-radius:8px;
+  padding:6px 9px;
+}
+
+.total{
+  font-size:19px;
+  font-weight:bold;
+  color:#087f4f;
+  margin:15px 0;
+}
+
+.checkout{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:#087f4f;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.order-form{
+  display:none;
+  background:#f5f6f8;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+}
+
+.order-form.show{
+  display:block;
+}
+
+.order-form input,
+.order-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  font-family:inherit;
+}
+
+.order-form textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+footer{
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:30px;
+  line-height:2;
+}
+
+@media(max-width:500px){
+  .hero{
+    margin:12px;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-image{
+    height:110px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">🇦🇫 فروشگاه خانواده افغان</div>
-  <div class="cart" onclick="toggleCart()">🛒 <span id="count" class="badge">0</span></div>
+  <div class="header">
+    <div class="logo">🇦🇫 افغان فمیلی</div>
+
+    <button class="cart-button" onclick="toggleCart()">
+      🛒 سبد خرید
+      <span class="badge" id="cartCount">0</span>
+    </button>
+  </div>
 </header>
 
 <section class="hero">
-  <h1>خرید برای خانواده‌تان در افغانستان</h1>
-  <p>محصولات و هدیه‌های مورد نیاز خانواده را آسان انتخاب کنید.</p>
-  <a class="btn" href="#products">شروع خرید</a>
+  <h1>به افغان فمیلی خوش آمدید 🇦🇫</h1>
+
+  <p>
+    فروشگاه آنلاین محصولات مورد نیاز خانواده‌ها
+    در افغانستان.
+  </p>
+
+  <a class="hero-button" href="#products">
+    مشاهده محصولات
+  </a>
 </section>
 
 <div class="search">
-  <input id="search" oninput="searchProducts()" placeholder="🔎 جستجوی محصول...">
+  <input
+    type="search"
+    id="search"
+    placeholder="🔎 جستجوی محصول..."
+    oninput="searchProducts()"
+  >
 </div>
 
 <section class="section">
-  <h2 class="title">دسته‌بندی‌ها</h2>
-  <div class="categories">
-    <div class="category"><div class="icon">🛒</div>مواد غذایی</div>
-    <div class="category"><div class="icon">🎁</div>هدیه</div>
-    <div class="category"><div class="icon">👕</div>لباس</div>
-    <div class="category"><div class="icon">📱</div>موبایل</div>
-    <div class="category"><div class="icon">🏠</div>خانه</div>
+
+  <div class="city-box">
+    <b>📍 شهر خود را انتخاب کنید</b>
+
+    <select id="city">
+      <option value="">انتخاب شهر</option>
+      <option>کابل</option>
+      <option>هرات</option>
+      <option>مزار شریف</option>
+      <option>قندهار</option>
+      <option>جلال‌آباد</option>
+      <option>کندز</option>
+      <option>بامیان</option>
+      <option>غزنی</option>
+      <option>بلخ</option>
+      <option>بدخشان</option>
+      <option>پکتیا</option>
+      <option>سایر شهرها</option>
+    </select>
   </div>
+
+  <h2 class="title">دسته‌بندی‌ها</h2>
+
+  <div class="categories">
+
+    <button class="category active" onclick="filterCategory('همه',this)">
+      <span class="icon">🛍️</span>
+      همه
+    </button>
+
+    <button class="category" onclick="filterCategory('پوشاک',this)">
+      <span class="icon">👕</span>
+      پوشاک
+    </button>
+
+    <button class="category" onclick="filterCategory('خانه',this)">
+      <span class="icon">🏠</span>
+      خانه
+    </button>
+
+    <button class="category" onclick="filterCategory('کودک',this)">
+      <span class="icon">🧸</span>
+      کودک
+    </button>
+
+    <button class="category" onclick="filterCategory('دیجیتال',this)">
+      <span class="icon">📱</span>
+      دیجیتال
+    </button>
+
+  </div>
+
 </section>
 
-<div class="city">
-  <b>📍 شهر تحویل</b>
-  <select id="city">
-    <option>کابل</option>
-    <option>هرات</option>
-    <option>مزار شریف</option>
-    <option>قندهار</option>
-    <option>جلال‌آباد</option>
-    <option>کندز</option>
-  </select>
-</div>
-
-<div id="cartbox" class="cartbox">
-  <b>🛒 سبد خرید</b>
-  <div id="cartitems"></div>
-  <div id="total" style="margin-top:12px;font-weight:bold"></div>
-  <button class="order" onclick="placeOrder()">ثبت درخواست سفارش</button>
-</div>
-
 <section class="section" id="products">
-<h2 class="title">محصولات</h2>
-<div class="products" id="productList">
 
-<div class="product" data-name="برنج">
-  <div class="pic">🍚</div>
-  <div class="info"><b>برنج</b><div class="price">۱٬۲۰۰ افغانی</div>
-  <button class="add" onclick="addToCart('برنج',1200)">افزودن به سبد</button></div>
-</div>
+  <h2 class="title">محصولات</h2>
 
-<div class="product" data-name="بسته غذایی">
-  <div class="pic">🥫</div>
-  <div class="info"><b>بسته غذایی</b><div class="price">۲٬۵۰۰ افغانی</div>
-  <button class="add" onclick="addToCart('بسته غذایی',2500)">افزودن به سبد</button></div>
-</div>
+  <div class="products" id="productList"></div>
 
-<div class="product" data-name="هدیه خانوادگی">
-  <div class="pic">🎁</div>
-  <div class="info"><b>هدیه خانوادگی</b><div class="price">۱٬۸۰۰ افغانی</div>
-  <button class="add" onclick="addToCart('هدیه خانوادگی',1800)">افزودن به سبد</button></div>
-</div>
+</section>
 
-<div class="product" data-name="لباس">
-  <div class="pic">👕</div>
-  <div class="info"><b>لباس</b><div class="price">۱٬۵۰۰ افغانی</div>
-  <button class="add" onclick="addToCart('لباس',1500)">افزودن به سبد</button></div>
-</div>
+<section class="cart-box" id="cartBox">
 
-</div>
-<p><small>قیمت‌های بالا فعلاً نمونه‌اند و بعداً می‌توانیم محصولات و قیمت واقعی شما را وارد کنیم.</small></p>
+  <h2>🛒 سبد خرید</h2>
+
+  <div id="cartItems"></div>
+
+  <div class="total">
+    مجموع: <span id="total">0</span> افغانی
+  </div>
+
+  <button class="checkout" onclick="showOrderForm()">
+    ثبت سفارش
+  </button>
+
+  <div class="order-form" id="orderForm">
+
+    <h3>📦 معلومات سفارش</h3>
+
+    <input id="customerName" placeholder="نام شما">
+
+    <input id="phone" type="tel" placeholder="شماره تماس">
+
+    <textarea id="address" placeholder="آدرس دقیق تحویل"></textarea>
+
+    <button class="checkout" onclick="placeOrder()">
+      ارسال سفارش
+    </button>
+
+  </div>
+
 </section>
 
 <footer>
-فروشگاه خانواده افغان 🇦🇫<br><br>
-یک هدیه خوب برای خانواده‌تان بفرستید.
+
+  <b>افغان فمیلی شاپ 🇦🇫</b>
+
+  <br>
+
+  فروشگاه آنلاین خانواده‌های افغانستان
+
+  <br>
+
+  © 2026 تمام حقوق محفوظ است
+
 </footer>
 
 <script>
-let cart=[];
-function addToCart(name,price){
-  cart.push({name,price});
-  document.getElementById('count').textContent=cart.length;
-  renderCart();
-  alert(name+' به سبد خرید اضافه شد.');
-}
-function toggleCart(){
-  document.getElementById('cartbox').classList.toggle('show');
-  renderCart();
-}
-function renderCart(){
-  const box=document.getElementById('cartitems');
-  const total=document.getElementById('total');
-  if(!cart.length){
-    box.innerHTML='<p>سبد خرید خالی است.</p>';
-    total.textContent='';
-    return;
+
+const products = [
+
+  {
+    id:1,
+    name:"تی‌شرت مردانه",
+    category:"پوشاک",
+    price:450,
+    icon:"👕",
+    description:"تی‌شرت مناسب استفاده روزانه"
+  },
+
+  {
+    id:2,
+    name:"لباس زنانه",
+    category:"پوشاک",
+    price:850,
+    icon:"👗",
+    description:"لباس زیبا و راحت"
+  },
+
+  {
+    id:3,
+    name:"چراغ مطالعه",
+    category:"خانه",
+    price:650,
+    icon:"💡",
+    description:"چراغ مناسب خانه و مطالعه"
+  },
+
+  {
+    id:4,
+    name:"ظرف آشپزخانه",
+    category:"خانه",
+    price:350,
+    icon:"🍽️",
+    description:"مناسب استفاده روزانه"
+  },
+
+  {
+    id:5,
+    name:"اسباب‌بازی کودک",
+    category:"کودک",
+    price:550,
+    icon:"🧸",
+    description:"اسباب‌بازی سرگرم‌کننده"
+  },
+
+  {
+    id:6,
+    name:"هدفون",
+    category:"دیجیتال",
+    price:950,
+    icon:"🎧",
+    description:"هدفون مناسب موسیقی"
+  },
+
+  {
+    id:7,
+    name:"ساعت هوشمند",
+    category:"دیجیتال",
+    price:1800,
+    icon:"⌚",
+    description:"ساعت هوشمند روزمره"
+  },
+
+  {
+    id:8,
+    name:"کیف دستی",
+    category:"پوشاک",
+    price:750,
+    icon:"👜",
+    description:"کیف مناسب استفاده روزانه"
   }
-  box.innerHTML=cart.map((x,i)=>'<div class="cartrow"><span>'+x.name+'</span><span>'+x.price.toLocaleString('fa-AF')+' افغانی</span></div>').join('');
-  const sum=cart.reduce((a,x)=>a+x.price,0);
-  total.textContent='مجموع: '+sum.toLocaleString('fa-AF')+' افغانی';
-}
-function searchProducts(){
-  const q=document.getElementById('search').value.trim().toLowerCase();
-  document.querySelectorAll('.product').forEach(p=>{
-    p.style.display=p.dataset.name.toLowerCase().includes(q)?'block':'none';
+
+];
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let currentCategory = "همه";
+
+function showProducts(){
+
+  const list = document.getElementById("productList");
+
+  const search =
+    document.getElementById("search").value
+    .trim()
+    .toLowerCase();
+
+  const filtered = products.filter(p => {
+
+    const categoryOK =
+      currentCategory === "همه" ||
+      p.category === currentCategory;
+
+    const searchOK =
+      p.name.toLowerCase().includes(search) ||
+      p.category.toLowerCase().includes(search);
+
+    return categoryOK && searchOK;
+
   });
+
+  list.innerHTML = "";
+
+  filtered.forEach(p => {
+
+    list.innerHTML += `
+
+      <div class="product">
+
+        <div class="product-image">
+          ${p.icon}
+        </div>
+
+        <div class="info">
+
+          <h3>${p.name}</h3>
+
+          <div class="description">
+            ${p.description}
+          </div>
+
+          <div class="price">
+            ${p.price.toLocaleString()} افغانی
+          </div>
+
+          <button class="add" onclick="addToCart(${p.id})">
+            افزودن به سبد 🛒
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
 }
+
+function addToCart(id){
+
+  const item = cart.find(x => x.id === id);
+
+  if(item){
+
+    item.qty++;
+
+  }else{
+
+    cart.push({
+      id:id,
+      qty:1
+    });
+
+  }
+
+  saveCart();
+
+  alert("محصول به سبد خرید اضافه شد ✅");
+
+}
+
+function saveCart(){
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
+
+  updateCart();
+
+}
+
+function updateCart(){
+
+  const count =
+    cart.reduce(
+      (sum,item) => sum + item.qty,
+      0
+    );
+
+  document.getElementById("cartCount").textContent = count;
+
+  const box =
+    document.getElementById("cartItems");
+
+  box.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    const product =
+      products.find(p => p.id === item.id);
+
+    if(!product) return;
+
+    total += product.price * item.qty;
+
+    box.innerHTML += `
+
+      <div class="cart-row">
+
+        <div>
+          <b>${product.name}</b>
+          <br>
+          ${product.price.toLocaleString()} افغانی
+        </div>
+
+        <div class="qty">
+
+          <button onclick="changeQty(${item.id},1)">
+            +
+          </button>
+
+          ${item.qty}
+
+          <button onclick="changeQty(${item.id},-1)">
+            -
+          </button>
+
+        </div>
+
+        <button
+          class="remove"
+          onclick="removeFromCart(${item.id})"
+        >
+          حذف
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+  document.getElementById("total").textContent =
+    total.toLocaleString();
+
+}
+
+function changeQty(id,change){
+
+  const item = cart.find(x => x.id === id);
+
+  if(!item) return;
+
+  item.qty += change;
+
+  if(item.qty <= 0){
+
+    cart = cart.filter(x => x.id !== id);
+
+  }
+
+  saveCart();
+
+}
+
+function removeFromCart(id){
+
+  cart = cart.filter(x => x.id !== id);
+
+  saveCart();
+
+}
+
+function toggleCart(){
+
+  const box =
+    document.getElementById("cartBox");
+
+  box.classList.toggle("show");
+
+  updateCart();
+
+}
+
+function showOrderForm(){
+
+  if(cart.length === 0){
+
+    alert("سبد خرید شما خالی است.");
+
+    return;
+
+  }
+
+  document
+    .getElementById("orderForm")
+    .classList.add("show");
+
+}
+
 function placeOrder(){
-  if(!cart.length){alert('سبد خرید خالی است.');return;}
-  const city=document.getElementById('city').value;
-  alert('درخواست سفارش برای شهر '+city+' ثبت شد. در مرحله بعد فرم نام، شماره تماس و آدرس را اضافه می‌کنیم.');
+
+  const name =
+    document.getElementById("customerName").value.trim();
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const address =
+    document.getElementById("address").value.trim();
+
+  const city =
+    document.getElementById("city").value;
+
+  if(!name || !phone || !address || !city){
+
+    alert("لطفاً تمام معلومات سفارش را وارد کنید.");
+
+    return;
+
+  }
+
+  let message =
+    "سفارش جدید از افغان فمیلی%0A%0A";
+
+  message +=
+    "نام: " + name + "%0A";
+
+  message +=
+    "شماره: " + phone + "%0A";
+
+  message +=
+    "شهر: " + city + "%0A";
+
+  message +=
+    "آدرس: " + address + "%0A%0A";
+
+  message += "محصولات:%0A";
+
+  cart.forEach(item => {
+
+    const p =
+      products.find(x => x.id === item.id);
+
+    message +=
+      p.name +
+      " × " +
+      item.qty +
+      "%0A";
+
+  });
+
+  alert(
+    "سفارش شما آماده شد ✅\n\nدر مرحله بعد شماره واتساپ فروشگاه را وصل می‌کنیم."
+  );
+
 }
+
+function filterCategory(category,button){
+
+  currentCategory = category;
+
+  document
+    .querySelectorAll(".category")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  showProducts();
+
+}
+
+function searchProducts(){
+
+  showProducts();
+
+}
+
+document
+  .getElementById("city")
+  .addEventListener("change",function(){
+
+    localStorage.setItem(
+      "city",
+      this.value
+    );
+
+  });
+
+const savedCity =
+  localStorage.getItem("city");
+
+if(savedCity){
+
+  document.getElementById("city").value =
+    savedCity;
+
+}
+
+showProducts();
+
+updateCart();
+
 </script>
+
 </body>
 </html>
