@@ -1,126 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Afghan Family Shop</title>
+<title>فروشگاه خانواده افغان</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f6f8;color:#222}
-header{background:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-.logo{font-size:20px;font-weight:bold}
-.cart{font-size:25px}
-.hero{margin:18px;padding:28px 20px;border-radius:20px;background:#087f4f;color:white}
-.hero h1{font-size:28px;margin:0 0 12px}
-.hero p{line-height:1.5}
-.btn{display:inline-block;background:white;color:#087f4f;padding:12px 18px;border-radius:10px;font-weight:bold}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f5f6f8;color:#222}
+header{background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;box-shadow:0 1px 5px #ddd}
+.logo{font-size:19px;font-weight:bold}
+.cart{font-size:25px;cursor:pointer}
+.badge{font-size:12px;background:#087f4f;color:#fff;border-radius:20px;padding:2px 6px;vertical-align:top}
+.hero{margin:18px;padding:25px 20px;border-radius:20px;background:#087f4f;color:#fff}
+.hero h1{font-size:27px;margin:0 0 12px}
+.hero p{line-height:1.7;margin:0 0 16px}
+.btn{display:inline-block;background:#fff;color:#087f4f;padding:12px 18px;border-radius:10px;font-weight:bold;text-decoration:none}
 .search{margin:18px}
 .search input{width:100%;padding:15px;border:1px solid #ddd;border-radius:12px;font-size:15px}
 .section{padding:5px 18px 20px}
 .title{font-size:20px;margin-bottom:15px}
 .categories{display:flex;gap:10px;overflow:auto}
-.category{min-width:90px;background:white;padding:15px 8px;border-radius:14px;text-align:center}
+.category{min-width:90px;background:#fff;padding:13px 8px;border-radius:14px;text-align:center}
 .icon{font-size:30px}
-.city{margin:0 18px 20px;background:white;padding:18px;border-radius:14px}
-.city select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px}
+.city{margin:0 18px 20px;background:#fff;padding:18px;border-radius:14px}
+.city select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px;background:#fff}
 .products{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.product{background:white;border-radius:15px;overflow:hidden}
+.product{background:#fff;border-radius:15px;overflow:hidden}
 .pic{height:120px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:50px}
 .info{padding:12px}
 .price{color:#087f4f;font-weight:bold;margin-top:6px}
-.add{width:100%;margin-top:10px;padding:10px;border:0;border-radius:8px;background:#087f4f;color:white}
-footer{text-align:center;background:#222;color:white;padding:25px}
+.add{width:100%;margin-top:10px;padding:10px;border:0;border-radius:8px;background:#087f4f;color:white;font-size:14px;cursor:pointer}
+.cartbox{display:none;margin:0 18px 20px;background:#fff;border-radius:14px;padding:16px}
+.cartbox.show{display:block}
+.cartrow{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:9px 0}
+.order{width:100%;margin-top:12px;padding:12px;border:0;border-radius:9px;background:#222;color:#fff;font-weight:bold}
+footer{text-align:center;background:#222;color:white;padding:25px;margin-top:10px}
+small{color:#777}
 </style>
 </head>
-
 <body>
 
 <header>
-<div class="logo">🇦🇫 Afghan Family</div>
-<div class="cart">🛒</div>
+  <div class="logo">🇦🇫 فروشگاه خانواده افغان</div>
+  <div class="cart" onclick="toggleCart()">🛒 <span id="count" class="badge">0</span></div>
 </header>
 
 <section class="hero">
-<h1>Shop for your family in Afghanistan</h1>
-<p>Buy products and gifts for your loved ones in Afghanistan.</p>
-<a class="btn" href="#products">Start Shopping</a>
+  <h1>خرید برای خانواده‌تان در افغانستان</h1>
+  <p>محصولات و هدیه‌های مورد نیاز خانواده را آسان انتخاب کنید.</p>
+  <a class="btn" href="#products">شروع خرید</a>
 </section>
 
 <div class="search">
-<input placeholder="🔎 Search products...">
+  <input id="search" oninput="searchProducts()" placeholder="🔎 جستجوی محصول...">
 </div>
 
 <section class="section">
-<h2 class="title">Categories</h2>
-<div class="categories">
-<div class="category"><div class="icon">🛒</div>Groceries</div>
-<div class="category"><div class="icon">🎁</div>Gifts</div>
-<div class="category"><div class="icon">👕</div>Clothes</div>
-<div class="category"><div class="icon">📱</div>Phones</div>
-<div class="category"><div class="icon">🏠</div>Home</div>
-</div>
+  <h2 class="title">دسته‌بندی‌ها</h2>
+  <div class="categories">
+    <div class="category"><div class="icon">🛒</div>مواد غذایی</div>
+    <div class="category"><div class="icon">🎁</div>هدیه</div>
+    <div class="category"><div class="icon">👕</div>لباس</div>
+    <div class="category"><div class="icon">📱</div>موبایل</div>
+    <div class="category"><div class="icon">🏠</div>خانه</div>
+  </div>
 </section>
 
 <div class="city">
-<b>📍 Delivery city</b>
-<select>
-<option>Kabul</option>
-<option>Herat</option>
-<option>Mazar-e-Sharif</option>
-<option>Kandahar</option>
-<option>Jalalabad</option>
-<option>Kunduz</option>
-</select>
+  <b>📍 شهر تحویل</b>
+  <select id="city">
+    <option>کابل</option>
+    <option>هرات</option>
+    <option>مزار شریف</option>
+    <option>قندهار</option>
+    <option>جلال‌آباد</option>
+    <option>کندز</option>
+  </select>
+</div>
+
+<div id="cartbox" class="cartbox">
+  <b>🛒 سبد خرید</b>
+  <div id="cartitems"></div>
+  <div id="total" style="margin-top:12px;font-weight:bold"></div>
+  <button class="order" onclick="placeOrder()">ثبت درخواست سفارش</button>
 </div>
 
 <section class="section" id="products">
-<h2 class="title">Popular Products</h2>
+<h2 class="title">محصولات</h2>
+<div class="products" id="productList">
 
-<div class="products">
-
-<div class="product">
-<div class="pic">🍚</div>
-<div class="info">
-<b>Rice</b>
-<div class="price">$15</div>
-<button class="add">Add to Cart</button>
-</div>
+<div class="product" data-name="برنج">
+  <div class="pic">🍚</div>
+  <div class="info"><b>برنج</b><div class="price">۱٬۲۰۰ افغانی</div>
+  <button class="add" onclick="addToCart('برنج',1200)">افزودن به سبد</button></div>
 </div>
 
-<div class="product">
-<div class="pic">🥫</div>
-<div class="info">
-<b>Food Package</b>
-<div class="price">$30</div>
-<button class="add">Add to Cart</button>
-</div>
+<div class="product" data-name="بسته غذایی">
+  <div class="pic">🥫</div>
+  <div class="info"><b>بسته غذایی</b><div class="price">۲٬۵۰۰ افغانی</div>
+  <button class="add" onclick="addToCart('بسته غذایی',2500)">افزودن به سبد</button></div>
 </div>
 
-<div class="product">
-<div class="pic">🎁</div>
-<div class="info">
-<b>Family Gift</b>
-<div class="price">$25</div>
-<button class="add">Add to Cart</button>
-</div>
+<div class="product" data-name="هدیه خانوادگی">
+  <div class="pic">🎁</div>
+  <div class="info"><b>هدیه خانوادگی</b><div class="price">۱٬۸۰۰ افغانی</div>
+  <button class="add" onclick="addToCart('هدیه خانوادگی',1800)">افزودن به سبد</button></div>
 </div>
 
-<div class="product">
-<div class="pic">👕</div>
-<div class="info">
-<b>Clothes</b>
-<div class="price">$20</div>
-<button class="add">Add to Cart</button>
-</div>
+<div class="product" data-name="لباس">
+  <div class="pic">👕</div>
+  <div class="info"><b>لباس</b><div class="price">۱٬۵۰۰ افغانی</div>
+  <button class="add" onclick="addToCart('لباس',1500)">افزودن به سبد</button></div>
 </div>
 
 </div>
+<p><small>قیمت‌های بالا فعلاً نمونه‌اند و بعداً می‌توانیم محصولات و قیمت واقعی شما را وارد کنیم.</small></p>
 </section>
 
 <footer>
-Afghan Family Shop 🇦🇫<br><br>
-Send something special to your family.
+فروشگاه خانواده افغان 🇦🇫<br><br>
+یک هدیه خوب برای خانواده‌تان بفرستید.
 </footer>
 
+<script>
+let cart=[];
+function addToCart(name,price){
+  cart.push({name,price});
+  document.getElementById('count').textContent=cart.length;
+  renderCart();
+  alert(name+' به سبد خرید اضافه شد.');
+}
+function toggleCart(){
+  document.getElementById('cartbox').classList.toggle('show');
+  renderCart();
+}
+function renderCart(){
+  const box=document.getElementById('cartitems');
+  const total=document.getElementById('total');
+  if(!cart.length){
+    box.innerHTML='<p>سبد خرید خالی است.</p>';
+    total.textContent='';
+    return;
+  }
+  box.innerHTML=cart.map((x,i)=>'<div class="cartrow"><span>'+x.name+'</span><span>'+x.price.toLocaleString('fa-AF')+' افغانی</span></div>').join('');
+  const sum=cart.reduce((a,x)=>a+x.price,0);
+  total.textContent='مجموع: '+sum.toLocaleString('fa-AF')+' افغانی';
+}
+function searchProducts(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.product').forEach(p=>{
+    p.style.display=p.dataset.name.toLowerCase().includes(q)?'block':'none';
+  });
+}
+function placeOrder(){
+  if(!cart.length){alert('سبد خرید خالی است.');return;}
+  const city=document.getElementById('city').value;
+  alert('درخواست سفارش برای شهر '+city+' ثبت شد. در مرحله بعد فرم نام، شماره تماس و آدرس را اضافه می‌کنیم.');
+}
+</script>
 </body>
 </html>
